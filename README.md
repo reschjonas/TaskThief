@@ -1,65 +1,114 @@
-# TaskThief - Active Scheduled-Task-Manipulator
+# 🕵️ TaskThief
 
-TaskThief is a tool for active testing of scheduled tasks and cron jobs. It identifies and evaluates misconfigurations in task schedulers (such as Linux Cron) that could lead to privilege escalation or persistent backdoors.
+<div align="center">
 
-## Features
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Platform](https://img.shields.io/badge/platform-Linux-lightgrey.svg)
+![Bash](https://img.shields.io/badge/bash-%3E%3D4.0-orange.svg)
 
-- **Enhanced Automatic Discovery**: Systematically collects information about existing scheduled tasks, cron jobs, and other schedulers, including permissions, triggers, and execution contexts. Includes detection of hidden tasks in udev rules, systemd path units, incron tasks, and more.
-- **Configuration Analysis**: Evaluates the collected settings against best practices and identifies potential vulnerabilities, such as excessive permissions or faulty configurations that could lead to task hijacking.
-- **Simulated Task Manipulation**: Performs controlled modifications to test if an attacker could modify existing tasks or insert their own tasks, demonstrating possible privilege escalation scenarios.
-- **Comprehensive Reporting**: Generates detailed HTML and text reports that document found vulnerabilities, performed manipulations, and concrete improvement suggestions.
-- **Improved Safety and Logging**: Enhanced backup and restore mechanisms along with configurable logging levels to keep track of all actions.
-- **Privilege Management**: Smart handling of root privileges with ability to elevate permissions when needed for critical operations.
-- **Modular Architecture**: Allows for easy extension with additional modules for other task schedulers or specific test methods, making the tool adaptable to new scenarios.
-- **Command Line Interface**: Run specific operations directly from the command line with the new CLI options.
+**Advanced Security Testing Tool for Scheduled Tasks**
 
-## Requirements
+</div>
+
+## 📋 Overview
+
+TaskThief is a sophisticated security tool for active testing of scheduled tasks and cron jobs on Linux systems. It helps identify and evaluate misconfigurations in task schedulers that could lead to privilege escalation or persistent backdoors.
+
+<div align="center">
+  
+```
+🔍 Discover → 🛡️ Analyze → 🧪 Test → 📊 Report
+```
+
+</div>
+
+## 🌟 Key Features
+
+| Feature | Description |
+|---------|-------------|
+| 🔍 **Enhanced Discovery** | Systematically detects all scheduled tasks, including hidden ones in udev rules, systemd units, and more |
+| 🛡️ **Configuration Analysis** | Evaluates settings against security best practices to identify potential vulnerabilities |
+| 🧪 **Simulated Attacks** | Performs controlled modifications to test for privilege escalation vectors |
+| 📊 **Comprehensive Reporting** | Generates detailed HTML and text reports with actionable recommendations |
+| 📝 **Advanced Logging** | Configurable logging levels with enhanced backup and restore mechanisms |
+| 🔐 **Smart Privilege Handling** | Intelligently manages root access requirements for operations |
+| 🧩 **Modular Architecture** | Easily extensible with additional modules for other schedulers |
+| ⌨️ **CLI Support** | Run specific operations directly from the command line |
+
+## 🔧 Requirements
 
 - Bash 4.0 or higher
 - Linux operating system
 - Root privileges for full functionality (can be provided via sudo)
 
-## Installation
+## 📥 Installation
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/reschjonas/TaskThief.git
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/reschjonas/TaskThief.git
 
-2. Make the main script executable:
-   ```
-   chmod +x TaskThief/taskthief.sh
-   ```
+# Navigate to the directory
+cd TaskThief
 
-3. Run the tool:
-   ```
-   cd TaskThief
-   ./taskthief.sh
-   ```
+# Make the script executable
+chmod +x taskthief.sh
 
-## Usage
+# Run TaskThief
+./taskthief.sh
+```
 
-1. **Automatic Discovery** [Requires Root]
-   - Identifies cron jobs, systemd timers, AT jobs, and anacron jobs.
-   - Discovers hidden scheduled tasks like udev rules, startup scripts, and more.
-   - Gathers detailed information about each scheduled task.
+## 🚀 Usage
 
-2. **Configuration Analysis** [Requires Root]
-   - Analyzes cron jobs and systemd timers for security issues.
-   - Checks for permission problems in configuration files.
-   - Identifies weak configurations that could be exploited.
+### Core Functionality
 
-3. **Task Manipulation** [Requires Root]
-   - Tests cron job hijacking by attempting controlled modifications.
-   - Tests systemd timer manipulation to identify privilege escalation vectors.
-   - Demonstrates how an attacker might create persistent backdoors.
+<details>
+<summary><b>🔍 Automatic Discovery</b> [Requires Root]</summary>
+<br>
+• Identifies cron jobs, systemd timers, AT jobs, and anacron jobs<br>
+• Discovers hidden scheduled tasks like udev rules, startup scripts, and more<br>
+• Gathers detailed information about each scheduled task
+</details>
 
-4. **Reporting**
-   - Generates comprehensive HTML or text reports.
-   - Provides detailed findings and recommendations.
-   - Exports results for documentation purposes.
+<details>
+<summary><b>🛡️ Configuration Analysis</b> [Requires Root]</summary>
+<br>
+• Analyzes cron jobs and systemd timers for security issues<br>
+• Checks for permission problems in configuration files<br>
+• Identifies weak configurations that could be exploited
+</details>
 
-## Privilege Management
+<details>
+<summary><b>🧪 Task Manipulation</b> [Requires Root]</summary>
+<br>
+• Tests cron job hijacking by attempting controlled modifications<br>
+• Tests systemd timer manipulation to identify privilege escalation vectors<br>
+• Demonstrates how an attacker might create persistent backdoors
+</details>
+
+<details>
+<summary><b>📊 Reporting</b></summary>
+<br>
+• Generates comprehensive HTML or text reports<br>
+• Provides detailed findings and recommendations<br>
+• Exports results for documentation purposes
+</details>
+
+### 💻 Command Line Options
+
+```bash
+./taskthief.sh [OPTION]
+```
+
+| Option | Description |
+|--------|-------------|
+| `-h, --help` | Display help message |
+| `-v, --version` | Display version information |
+| `-d, --discover` | Run full discovery immediately |
+| `-a, --analyze` | Run full analysis immediately |
+| `-r, --report` | Generate a full report immediately |
+
+### 🔐 Privilege Management
 
 TaskThief automatically detects when root privileges are required and offers options to:
 
@@ -69,50 +118,41 @@ TaskThief automatically detects when root privileges are required and offers opt
 
 For critical operations that require root access, TaskThief will prompt you to elevate privileges when needed.
 
-## Command Line Options
+### 📝 Logging Levels
 
-TaskThief supports command line options for direct operation:
-
-```
-./taskthief.sh [OPTION]
-```
-
-**Options:**
-- `-h`, `--help` - Display help message
-- `-v`, `--version` - Display version information
-- `-d`, `--discover` - Run full discovery immediately
-- `-a`, `--analyze` - Run full analysis immediately
-- `-r`, `--report` - Generate a full report immediately
-
-## Enhanced Logging
-
-TaskThief includes comprehensive logging capabilities with configurable log levels:
-- **DEBUG** - Most verbose, logs all operations
-- **INFO** - Standard information (default)
-- **WARNING** - Only logs warnings and errors
-- **ERROR** - Only logs errors
-- **NONE** - Disables logging
+| Level | Description |
+|-------|-------------|
+| `DEBUG` | Most verbose, logs all operations |
+| `INFO` | Standard information (default) |
+| `WARNING` | Only logs warnings and errors |
+| `ERROR` | Only logs errors |
+| `NONE` | Disables logging |
 
 Configure logging in the Settings menu or by editing the config file.
 
-## Security Considerations
+## ⚠️ Security Considerations
 
 TaskThief is designed for legitimate security testing and educational purposes. When using this tool:
 
-- Always ensure you have proper authorization to test the target systems.
-- Use in a controlled environment when possible.
-- Backup important files before running manipulation tests.
-- Review all findings and manipulations carefully.
+- ✅ Always ensure you have proper authorization to test the target systems
+- ✅ Use in a controlled environment when possible
+- ✅ Backup important files before running manipulation tests
+- ✅ Review all findings and manipulations carefully
 
-## Disclaimer
+## ⚖️ Disclaimer
 
 The tool performs active testing that modifies system files to demonstrate vulnerabilities. You should use this tool cautiously and only on systems you are authorized to test.
 
-## License
+## 📄 License
 
-MIT License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
 
-## Credits
+## 👥 Credits
 
-Developed as a penetration testing tool for identifying vulnerabilities in scheduled task systems. 
-Version 1.0.0
+Developed as a penetration testing tool for identifying vulnerabilities in scheduled task systems.
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ for security professionals and system administrators</sub>
+</div>
